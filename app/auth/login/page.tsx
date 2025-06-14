@@ -19,7 +19,7 @@ export default function LoginPage() {
     try {
       const response = await axios.post("/api/auth/login", { email, password });
       if (response.data.success) {
-        console.log("loggin innnnn");
+        // console.log("loggin innnnn");
         // Force full page reload to ensure middleware runs with cookies
         window.location.href = "/dashboard";
       } else {

@@ -11,7 +11,7 @@
     "build:prod": "npm run prebuild:prod && next build",
     "start:prod": "next start",
     "build": "next build",
-    "start": "next start",
+     "start": "next start -p 8300",
     "lint": "next lint"
   },
   "dependencies": {

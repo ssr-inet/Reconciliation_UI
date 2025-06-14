@@ -10,7 +10,7 @@ export async function POST(request: Request) {
   try {
     // Verify the current user is an admin
     const currentUser = await getCurrentUser();
-    console.log("currentUser", currentUser);
+    // console.log("currentUser", currentUser);
     if (!currentUser) {
       return NextResponse.json({ success: false, error: "Not authenticated" }, { status: 401 });
     }

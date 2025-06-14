@@ -46,7 +46,7 @@ export async function getCurrentUser() {
       createdAt: true,
     },
   });
-  console.log("user", user);
+  // console.log("user", user);
   return user;
 }
 

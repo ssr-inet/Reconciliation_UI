@@ -89,8 +89,8 @@ export default function NavigationManagementPage() {
   // Handle form submission - Updated version
   // Update your onSubmit function with these debug logs
   const onSubmit = async (values: NavigationItemFormValues) => {
-    console.log("Form submitted with values:", values);
-    console.log("Editing ID:", editingId);
+    // console.log("Form submitted with values:", values);
+    // console.log("Editing ID:", editingId);
 
     try {
       if (editingId) {
@@ -103,7 +103,7 @@ export default function NavigationManagementPage() {
 
         // Make API call
         const updatedItem = await updateNavigationItem(editingId, updateData);
-        console.log("Updated local state:", updatedItem);
+        // console.log("Updated local state:", updatedItem);
 
         // Update local state
         setNavigationItems((prevItems) => {
@@ -113,16 +113,16 @@ export default function NavigationManagementPage() {
 
         toast.success("Navigation item updated successfully");
       } else {
-        console.log("Creating new item...");
+        // console.log("Creating new item...");
         const newItem = await createNavigationItem(values);
-        console.log("New item created:", newItem);
+        // console.log("New item created:", newItem);
         setNavigationItems((prevItems) => [...prevItems, newItem]);
         toast.success("Navigation item created successfully");
       }
 
       setEditingId(null);
       form.reset();
-      console.log("Form reset completed");
+      // console.log("Form reset completed");
     } catch (error) {
       console.error("Submission error:", error);
       if (axios.isAxiosError(error)) {
@@ -138,7 +138,7 @@ export default function NavigationManagementPage() {
   const handleDelete = async (id: string) => {
     try {
       const deletedItem = await deleteNavigationItem(id);
-      console.log("deletedItem", deletedItem);
+      // console.log("deletedItem", deletedItem);
       toast.success("Navigation item deleted successfully");
       const data = await getNavigationItems();
       setNavigationItems(data.data);

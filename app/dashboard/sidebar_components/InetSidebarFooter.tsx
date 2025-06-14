@@ -26,11 +26,11 @@ export default function InetSidebarFooter() {
     const fetchUser = async () => {
       try {
         const response = await axios.get("/api/auth/me");
-        console.log('response', response);
-        console.log('response.data', response?.data);
-        console.log('response.data.user', response?.data?.user);
+        // console.log('response', response);
+        // console.log('response.data', response?.data);
+        // console.log('response.data.user', response?.data?.user);
         setUser(response?.data?.user)
-        console.log(user);
+        // console.log(user);
 
       } catch (error) {
         toast.error("Failed to fetch user data");

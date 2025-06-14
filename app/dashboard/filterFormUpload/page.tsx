@@ -58,7 +58,7 @@ const serviceOptions = [
     { value: "AEPS", label: "PaySprint-Aeps" },
     { value: "IMT", label: "PaySprint-IMT" },
     { value: "BBPS", label: "BBPS" },
-    { value: "Pan_UTI", label: "Pan_UTI", disabled: true },
+    { value: "Pan_UTI", label: "Pan_UTI" },
     { value: "Pan_NSDL", label: "Pan_NSDL", disabled: true },
 ];
 
@@ -125,17 +125,17 @@ const FilterForm = () => {
             }
             formData.append("file", values.file);
 
-            console.log("Before axios request");
+            // console.log("Before axios request");
 
             // Remove the .catch() here and let the try/catch handle it
-            const res = await axios.post("http://localhost:5000/api/reconciliation", formData, {
+            const res = await axios.post("http://192.168.1.157:5000/api/reconciliation", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
                 timeout: 60000,
             });
 
-            console.log("After axios request", res);
+            // console.log("After axios request", res);
 
             const response = {
                 ...res,
@@ -144,7 +144,8 @@ const FilterForm = () => {
 
             if (response.status === 200) {
                 if (response.data?.isSuccess) {
-                    toast.success("Data processed successfully!");
+                    let Message = response?.data?.message
+                    toast.success(Message);
                     setApiResponse(response.data);
                 } else {
                     let errorMessage = " Error processing file..! Check Inputs and try again..!";

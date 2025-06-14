@@ -34,7 +34,7 @@ export const ResultsViewer = memo(({ responseData }: ResultsViewerProps) => {
     const Total_success_count = localData?.data?.Total_Success_count || 0;
     const Total_failed_count = localData?.data?.Total_Failed_count || 0;
     const otherSections = { ...localData.data };
-
+    const message = localData?.data?.message || " "
     const dataSections = [
         { key: "not_in_Portal", label: "Not in Portal" },
         { key: "NOT_IN_PORTAL_VENDOR_SUCC", label: "Vendor_success - Not_In_IhubPortal" },
@@ -50,6 +50,8 @@ export const ResultsViewer = memo(({ responseData }: ResultsViewerProps) => {
         { key: "IHUB_INT_VEND_SUC", label: "Vendor_Suc - Ihub_Ini" },
         { key: "VEND_FAIL_IHUB_INT", label: "Vendor_Fail - Ihub_Ini" },
         { key: "Tenant_db_ini_not_in_hubdb", label: "TENANT_DB_INI_NOT_IN_HUB" },
+        { key: "matched", label: "Matched_Values" },
+        { key: "not_in_vendor", label: "Not_In_Vendor" },
     ];
 
     const activeSections = dataSections.filter(section => {
@@ -57,7 +59,7 @@ export const ResultsViewer = memo(({ responseData }: ResultsViewerProps) => {
         return Array.isArray(sectionData) && sectionData.length > 0;
     });
     const service_name = localData?.service_name || " "
-    console.log(service_name)
+    // console.log(service_name)
 
     const orderedColumns = [
         "CATEGORY",
@@ -74,8 +76,8 @@ export const ResultsViewer = memo(({ responseData }: ResultsViewerProps) => {
         `${service_name}_STATUS`,
         // "TENANT_LEDGER_STATUS",
         "TRANSACTION_DEBIT",
-        "COMMISSION_CREDIT",
         "TRANSACTION_CREDIT",
+        "COMMISSION_CREDIT",
         "COMMISSION_REVERSAL"
     ];
 
@@ -150,7 +152,7 @@ export const ResultsViewer = memo(({ responseData }: ResultsViewerProps) => {
                 <CardContent>
                     {activeSections.length === 0 ? (
                         <div className="text-center p-4">
-                            <p>No detailed data available in any category.</p>
+                            <p>{message}</p>
                         </div>
                     ) : (
                         <Tabs defaultValue={activeSections[0]?.key || ''} className="w-full">

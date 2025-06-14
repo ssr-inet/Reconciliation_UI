@@ -6,7 +6,7 @@ export async function POST(request: Request) {
   const { email, password } = await request.json();
 
   try {
-    console.log("Login attempt:", { email, password });
+    // console.log("Login attempt:", { email, password });
     const user = await prisma.user.findUnique({ where: { email } });
     if (!user) {
       return NextResponse.json({ success: false, error: "User not found" }, { status: 401 });
